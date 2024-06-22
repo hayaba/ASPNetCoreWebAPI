@@ -8,7 +8,7 @@ A contact person should have at least the following properties:
 - Address
 - Email
 - Phone
-- One should be able to list, add, edit, and delete contact persons.
+- One should be able to read, add, edit, and delete contact persons (CRUD App).
 
 The backend should be Asp.Net Core Web API.
 Database of your choice.

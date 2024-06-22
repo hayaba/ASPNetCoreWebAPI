@@ -1,6 +1,4 @@
-# ASPNetCoreWebAPI
-
--- MicroTech Applicant Programming Task
+# ASPNetCoreWebAPI -- MicroTech Applicant Programming Task
 
 Create an Asp.Net web solution in C# that can maintain contact persons.
 

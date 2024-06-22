@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kontaktpersoner", "kontaktpersoner\kontaktpersoner.csproj", "{821D042A-8BA3-4B51-8A7B-277E812A0D27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kontaktpersoner", "kontaktpersoner\kontaktpersoner.csproj", "{821D042A-8BA3-4B51-8A7B-277E812A0D27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EBDB96D9-1F57-4DDC-AD50-5274450E5079}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

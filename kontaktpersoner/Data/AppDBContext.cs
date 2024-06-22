@@ -4,7 +4,7 @@ namespace kontaktpersoner.Data
 {
     internal sealed class AppDBContext : DbContext
     {
-        public DbSet<kontaktPerson> KontaktPersoner { get; set; }
+        public DbSet<KontaktPerson> KontaktPersoner { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
             optionsBuilder.UseSqlite("Data Source=./Data/AppDB.db");
@@ -13,11 +13,11 @@ namespace kontaktpersoner.Data
         // Seed the database with some example data for testing purposes 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            kontaktPerson[] personerToSeed = new kontaktPerson[6];
+            KontaktPerson[] personerToSeed = new KontaktPerson[6];
 
             for (int i = 1; i <= 6; i++)
             {
-                personerToSeed[i - 1] = new kontaktPerson
+                personerToSeed[i - 1] = new KontaktPerson
                 {
                     KontaktId = i,
                     Navn = $"Person {i}",
@@ -26,7 +26,7 @@ namespace kontaktpersoner.Data
                     Telefon = $"Telefon {i}"
                     };
             }
-            modelBuilder.Entity<kontaktPerson>().HasData(personerToSeed);
+            modelBuilder.Entity<KontaktPerson>().HasData(personerToSeed);
         }
     }
 }

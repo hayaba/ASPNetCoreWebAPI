@@ -2,7 +2,7 @@
 
 namespace kontaktpersoner.Data
 {
-    internal sealed class kontaktPerson
+    internal sealed class KontaktPerson
     {
         [Key]
         public int KontaktId { get; set; }

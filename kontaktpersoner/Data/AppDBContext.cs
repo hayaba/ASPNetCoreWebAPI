@@ -15,10 +15,18 @@ namespace kontaktpersoner.Data
         {
             kontaktPerson[] personerToSeed = new kontaktPerson[6];
 
-            for (int i = 0; i < personerToSeed.Length; i++)
+            for (int i = 1; i <= 6; i++)
             {
-
+                personerToSeed[i - 1] = new kontaktPerson
+                {
+                    KontaktId = i,
+                    Navn = $"Person {i}",
+                    Adresse = $"Adresse {i}",
+                    Email = $"Email {i}",
+                    Telefon = $"Telefon {i}"
+                    };
             }
+            modelBuilder.Entity<kontaktPerson>().HasData(personerToSeed);
         }
     }
 }

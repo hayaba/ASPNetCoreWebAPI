@@ -11,10 +11,8 @@ namespace kontaktpersoner.Data
         }
         internal static async Task<KontaktPerson> GetKontaktByIdAsync(int KontaktId)
         {
-            using (var db = new AppDBContext())
-            {
-                return await db.KontaktPersoner.FirstOrDefaultAsync(k => k.KontaktId == KontaktId);
-            }
+            using var db = new AppDBContext();
+            return await db.KontaktPersoner.FirstOrDefaultAsync(k => k.KontaktId == KontaktId);
         }
         internal static async Task<bool> AddKontaktAsync(KontaktPerson kontaktToCreate)
         {

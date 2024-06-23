@@ -6,13 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CROSPolicy",
+    options.AddPolicy("CORSPolicy",
         builder =>
         {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-            //  .WithOrigins("http://localhost:3000", "https://https://appname.azurestaticapps.net");
+            builder.AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .WithOrigins("http://localhost:3000", "https://https://appname.azurestaticapps.net");
         });
 });
 
@@ -36,7 +35,7 @@ app.UseSwaggerUI(SwaggerUIOptions =>
 
 app.UseHttpsRedirection();
 
-app.UseCors("CROSPolicy");
+app.UseCors("CORSPolicy");
 
 // map get request to get all kontaktPersoner from the database 
 app.MapGet("/get-all-kontaktPersoner", async () => await KontaktPersonerRepository.GetKontaktPersonerAsync())

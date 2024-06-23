@@ -79,8 +79,22 @@ export default function App() {
           </tbody>
         </table>
 
-        <button onClick={() => setContacts([])} className="btn btn-dark btn-lg w-100">Empty React Contacts array</button>
+        <button
+          onClick={() => setContacts([])}
+          className="btn btn-dark btn-lg w-100"
+        >
+          Empty React Contacts array
+        </button>
       </div>
     );
+  }
+
+  function onContactCreated(createdContact) {
+    if(createdContact === null) {
+      return;
+    }
+    alert(`"${createdContact.navn}" Contact successfully created.`)
+
+    getContacts();
   }
 }

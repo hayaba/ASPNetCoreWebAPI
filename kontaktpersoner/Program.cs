@@ -6,14 +6,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-options.AddPolicy("CROSPolicy",
-    builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-             //  .WithOrigins("http://localhost:3000", "https://https://appname.azurestaticapps.net");
-    });
+    options.AddPolicy("CROSPolicy",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+            //  .WithOrigins("http://localhost:3000", "https://https://appname.azurestaticapps.net");
+        });
+});
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -98,4 +99,3 @@ app.MapDelete("/delete-kontaktPersoner/{kontaktId}", async (int kontaktId) =>
 }).WithTags("KontaktPersoner Endpoints");
 
 app.Run();
-

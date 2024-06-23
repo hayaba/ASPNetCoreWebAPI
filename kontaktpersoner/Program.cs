@@ -35,6 +35,8 @@ app.UseSwaggerUI(SwaggerUIOptions =>
 
 app.UseHttpsRedirection();
 
+app.UseCors("CROSPolicy");
+
 // map get request to get all kontaktPersoner from the database 
 app.MapGet("/get-all-kontaktPersoner", async () => await KontaktPersonerRepository.GetKontaktPersonerAsync())
     .WithTags("KontaktPersoner Endpoints");

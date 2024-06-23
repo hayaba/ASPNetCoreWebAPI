@@ -42,8 +42,8 @@ app.UseCors("CORSPolicy");
 app.MapGet("/get-all-kontaktpersoner", async () => await KontaktPersonerRepository.GetKontaktPersonerAsync())
     .WithTags("KontaktPersoner Endpoints");
 
-// map get request to get kontaktPersoner by id from the database
-app.MapGet("/get-kontaktpersoner-by-id/{kontaktId}", async (int kontaktId) =>
+// map get request to get a kontaktPerson by id from the database
+app.MapGet("/get-kontaktperson-by-id/{kontaktId}", async (int kontaktId) =>
 {
     KontaktPerson k = await KontaktPersonerRepository.GetKontaktByIdAsync(kontaktId);
     if (k != null)

@@ -1,6 +1,6 @@
 # ASPNetCoreWebAPI -- MicroTech Applicant Programming Task
 
-Create an Asp.Net web solution in C# that can maintain contact persons.
+An Asp.Net web solution in C# that can maintain contact people.
 
 A contact person should have at least the following properties:
 
@@ -8,8 +8,8 @@ A contact person should have at least the following properties:
 - Address
 - Email
 - Phone
-- One should be able to read, add, edit, and delete contact persons (CRUD App).
+- One should be able to create, read, update, and delete contact people (CRUD App).
 
-The backend should be Asp.Net Core Web API.
-Database of your choice.
-The frontend can be made with a JavaScript library of your choice (Angular, Vue, React, or similar), or MVC.
+* The backend is made with Asp.Net Core Web API.
+* Database using SQLite.
+* The frontend is be made with React

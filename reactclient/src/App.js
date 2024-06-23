@@ -2,20 +2,22 @@ import React, { useState } from "react";
 
 export default function App() {
   const [contacts, setContacts] = useState([]);
+
   function getContacts() {
     const url = "http://localhost:5299/get-all-kontaktpersoner";
 
     fetch(url, {
       method: "GET",
-    }).then(Response => Response.json())
-    .then(contactsFromServer => {
-      console.log(contactsFromServer);
-      setContacts(contactsFromServer);
     })
-    .catch((error) => {
-      console.log(error);
-      alert(error);
-    });
+      .then((Response) => Response.json())
+      .then((contactsFromServer) => {
+        console.log(contactsFromServer);
+        setContacts(contactsFromServer);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
   }
 
   return (
@@ -23,14 +25,24 @@ export default function App() {
       <div className="row min-vh-100">
         <div className="col d-flex flex-column justify-content-center align-items-center">
           <div>
-          <h1>ASP.NET Core Web API || Contacts List</h1>
-          <div className="mt-5">
-            <button onClick={getContacts} className="btn btn-dark btn-lg w-100">Get Contacts from server</button>
-            <button onClick={() => {}} className="btn btn-secondary btn-lg w-100 mt-4">Add New Contact</button>
-          </div>
+            <h1>ASP.NET Core Web API || Contacts List</h1>
+            <div className="mt-5">
+              <button
+                onClick={getContacts}
+                className="btn btn-dark btn-lg w-100"
+              >
+                Get Contacts from server
+              </button>
+              <button
+                onClick={() => {}}
+                className="btn btn-secondary btn-lg w-100 mt-4"
+              >
+                Add New Contact
+              </button>
+            </div>
           </div>
 
-          {renderContactsTable()}
+          {contacts.length > 0 && renderContactsTable()}
         </div>
       </div>
     </div>
@@ -51,19 +63,23 @@ export default function App() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>haya</td>
-              <td>Aarhus</td>
-              <td>email address</td>
-              <td>12345678</td>
-              <td>
-                <button className="btn btn-dark btn-s mx-3 my-3">Edit</button>
-                <button className="btn btn-secondary btn-s">Delete</button>
-              </td>
-            </tr>
+            {contacts.map((contact) => (
+              <tr key={contact.kontaktId}>
+                <th scope="row">{contact.kontaktId}</th>
+                <td>{contact.navn}</td>
+                <td>{contact.adresse}</td>
+                <td>{contact.email}</td>
+                <td>{contact.telefon}</td>
+                <td>
+                  <button className="btn btn-dark btn-s mx-3 my-3">Edit</button>
+                  <button className="btn btn-secondary btn-s">Delete</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
+
+        <button onClick={() => setContacts([])} className="btn btn-dark btn-lg w-100">Empty React Contacts array</button>
       </div>
     );
   }

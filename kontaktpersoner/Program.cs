@@ -4,6 +4,17 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+options.AddPolicy("CROSPolicy",
+    builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+             //  .WithOrigins("http://localhost:3000", "https://https://appname.azurestaticapps.net");
+    });
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -40,7 +51,7 @@ app.MapGet("/get-kontaktPersoner-by-id/{kontaktId}", async (int kontaktId) =>
     {
         return Results.NotFound();
     }
-    }).WithTags("KontaktPersoner Endpoints");
+}).WithTags("KontaktPersoner Endpoints");
 
 // map post request to add new kontaktPersoner to the database
 app.MapPost("/create-kontaktPersoner", async (KontaktPerson kontaktToCreate) =>
@@ -85,3 +96,4 @@ app.MapDelete("/delete-kontaktPersoner/{kontaktId}", async (int kontaktId) =>
 }).WithTags("KontaktPersoner Endpoints");
 
 app.Run();
+

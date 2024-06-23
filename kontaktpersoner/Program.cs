@@ -57,7 +57,7 @@ app.MapGet("/get-kontaktperson-by-id/{kontaktId}", async (int kontaktId) =>
 }).WithTags("KontaktPersoner Endpoints");
 
 // map post request to add new kontaktPersoner to the database
-app.MapPost("/create-kontaktpersoner", async (KontaktPerson kontaktToCreate) =>
+app.MapPost("/create-kontaktperson", async (KontaktPerson kontaktToCreate) =>
 {
     bool created = await KontaktPersonerRepository.CreateKontaktAsync(kontaktToCreate);
     if (created)

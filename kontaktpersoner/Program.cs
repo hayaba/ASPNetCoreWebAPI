@@ -56,7 +56,7 @@ app.MapGet("/get-kontaktperson-by-id/{kontaktId}", async (int kontaktId) =>
     }
 }).WithTags("KontaktPersoner Endpoints");
 
-// map post request to add new kontaktPersoner to the database
+// map post request to add new kontaktPerson to the database
 app.MapPost("/create-kontaktperson", async (KontaktPerson kontaktToCreate) =>
 {
     bool created = await KontaktPersonerRepository.CreateKontaktAsync(kontaktToCreate);
@@ -71,7 +71,7 @@ app.MapPost("/create-kontaktperson", async (KontaktPerson kontaktToCreate) =>
 }).WithTags("KontaktPersoner Endpoints");
 
 // map put request to update kontaktPersoner in the database
-app.MapPut("/update-kontaktpersoner", async (KontaktPerson kontaktToUpdate) =>
+app.MapPut("/update-kontaktperson", async (KontaktPerson kontaktToUpdate) =>
 {
     bool updated = await KontaktPersonerRepository.UpdateKontaktAsync(kontaktToUpdate);
     if (updated)

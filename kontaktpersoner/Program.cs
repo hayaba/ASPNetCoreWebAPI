@@ -38,12 +38,12 @@ app.UseHttpsRedirection();
 
 app.UseCors("CORSPolicy");
 
-// map get request to get all kontaktPersoner from the database 
-app.MapGet("/get-all-kontaktPersoner", async () => await KontaktPersonerRepository.GetKontaktPersonerAsync())
+// map get request to get all kontaktpersoner from the database 
+app.MapGet("/get-all-kontaktpersoner", async () => await KontaktPersonerRepository.GetKontaktPersonerAsync())
     .WithTags("KontaktPersoner Endpoints");
 
 // map get request to get kontaktPersoner by id from the database
-app.MapGet("/get-kontaktPersoner-by-id/{kontaktId}", async (int kontaktId) =>
+app.MapGet("/get-kontaktpersoner-by-id/{kontaktId}", async (int kontaktId) =>
 {
     KontaktPerson k = await KontaktPersonerRepository.GetKontaktByIdAsync(kontaktId);
     if (k != null)
@@ -57,7 +57,7 @@ app.MapGet("/get-kontaktPersoner-by-id/{kontaktId}", async (int kontaktId) =>
 }).WithTags("KontaktPersoner Endpoints");
 
 // map post request to add new kontaktPersoner to the database
-app.MapPost("/create-kontaktPersoner", async (KontaktPerson kontaktToCreate) =>
+app.MapPost("/create-kontaktpersoner", async (KontaktPerson kontaktToCreate) =>
 {
     bool created = await KontaktPersonerRepository.CreateKontaktAsync(kontaktToCreate);
     if (created)
@@ -71,7 +71,7 @@ app.MapPost("/create-kontaktPersoner", async (KontaktPerson kontaktToCreate) =>
 }).WithTags("KontaktPersoner Endpoints");
 
 // map put request to update kontaktPersoner in the database
-app.MapPut("/update-kontaktPersoner", async (KontaktPerson kontaktToUpdate) =>
+app.MapPut("/update-kontaktpersoner", async (KontaktPerson kontaktToUpdate) =>
 {
     bool updated = await KontaktPersonerRepository.UpdateKontaktAsync(kontaktToUpdate);
     if (updated)
@@ -85,7 +85,7 @@ app.MapPut("/update-kontaktPersoner", async (KontaktPerson kontaktToUpdate) =>
 }).WithTags("KontaktPersoner Endpoints");
 
 // map delete request to delete kontaktPersoner by id from the database
-app.MapDelete("/delete-kontaktPersoner/{kontaktId}", async (int kontaktId) =>
+app.MapDelete("/delete-kontaktpersoner/{kontaktId}", async (int kontaktId) =>
 {
     bool deleted = await KontaktPersonerRepository.DeleteKontaktAsync(kontaktId);
     if (deleted)

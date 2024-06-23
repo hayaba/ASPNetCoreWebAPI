@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function App() {
   const [contacts, setContacts] = useState([]);
   function getContacts() {
-    const url = "https://localhost:7005/get-all-kontaktPersoner";
+    const url = "http://localhost:5299/get-all-kontaktpersoner";
 
     fetch(url, {
       method: "GET",

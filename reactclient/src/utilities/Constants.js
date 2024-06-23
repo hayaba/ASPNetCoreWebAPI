@@ -24,3 +24,7 @@ const production = {
     APPI_URL_UPDATE_CONTACT: `${API_BASE_URL_PRODUCTION}/${ENDPOINTS.UPDATE_CONTACT}`,
     APPI_URL_DELETE_CONTACT_BY_ID: `${API_BASE_URL_PRODUCTION}/${ENDPOINTS.DELETE_CONTACT_BY_ID}`
 }
+
+const Constants = process.env.NODE_ENV === 'development' ? development : production;
+
+export default Constants;

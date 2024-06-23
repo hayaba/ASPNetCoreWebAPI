@@ -52,8 +52,7 @@ export default function ContactForm(props) {
   }
 
   return (
-    <div>
-      <form className="w-100 px-5">
+<form className="w-100 px-5">
         <h1 className="mt-5">Create new contact</h1>
 
         <div className="mt-5">
@@ -113,6 +112,5 @@ export default function ContactForm(props) {
           Cancel
         </button>
       </form>
-    </div>
   );
 }

@@ -69,5 +69,10 @@
                 return false;
             }
         }
+
+        internal static async Task GetKontaktPersonerByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

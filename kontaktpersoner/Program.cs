@@ -85,7 +85,7 @@ app.MapPut("/update-kontaktperson", async (KontaktPerson kontaktToUpdate) =>
 }).WithTags("KontaktPersoner Endpoints");
 
 // map delete request to delete kontaktPersoner by id from the database
-app.MapDelete("/delete-kontaktpersoner/{kontaktId}", async (int kontaktId) =>
+app.MapDelete("/delete-kontaktperson/{kontaktId}", async (int kontaktId) =>
 {
     bool deleted = await KontaktPersonerRepository.DeleteKontaktAsync(kontaktId);
     if (deleted)

@@ -12,4 +12,5 @@ A contact person should have at least the following properties:
 
 * The backend is made with Asp.Net Core Web API.
 * Database using SQLite.
-* The frontend is be made with React
+* The frontend is be made with React.
+* Using Bootstrap for styling. 

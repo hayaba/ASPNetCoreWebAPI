@@ -44,7 +44,6 @@
             using var db = new AppDBContext();
             try
             {
-
                 db.KontaktPersoner.Update(kontaktToUpdate);
 
                 return await db.SaveChangesAsync() >= 1;
@@ -61,7 +60,6 @@
             using var db = new AppDBContext();
             try
             {
-
                 KontaktPerson kontaktToDelete = await GetKontaktByIdAsync(KontaktId);
 
                 return await db.SaveChangesAsync() >= 1;

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Constants from "./utilities/Constants";
+import ContactForm from "./components/ContactForm";
 
 export default function App() {
   const [contacts, setContacts] = useState([]);
+  const [showingContactForm, setShowingContactForm] = useState(false);
 
   function getContacts() {
-    const url = Constants.APPI_URL_GET_ALL_CONTACTS;
+    const url = Constants.API_URL_GET_ALL_CONTACTS;
 
     fetch(url, {
       method: "GET",
@@ -24,25 +26,33 @@ export default function App() {
     <div className="container">
       <div className="row min-vh-100">
         <div className="col d-flex flex-column justify-content-center align-items-center">
-          <div>
-            <h1>ASP.NET Core Web API || Contacts List</h1>
-            <div className="mt-5">
-              <button
-                onClick={getContacts}
-                className="btn btn-dark btn-lg w-100"
-              >
-                Get Contacts from server
-              </button>
-              <button
-                onClick={() => {}}
-                className="btn btn-secondary btn-lg w-100 mt-4"
-              >
-                Add New Contact
-              </button>
+          {showingContactForm === false && (
+            <div>
+              <h1>ASP.NET Core Web API || Contacts List</h1>
+              <div className="mt-5">
+                <button
+                  onClick={getContacts}
+                  className="btn btn-dark btn-lg w-100"
+                >
+                  Get Contacts from server
+                </button>
+                <button
+                  onClick={() => setShowingContactForm(true)}
+                  className="btn btn-secondary btn-lg w-100 mt-4"
+                >
+                  Add New Contact
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
-          {contacts.length > 0 && renderContactsTable()}
+          {contacts.length > 0 &&
+            showingContactForm === false &&
+            renderContactsTable()}
+
+          {showingContactForm && (
+            <ContactForm onContactCreated={onContactCreated} />
+          )}
         </div>
       </div>
     </div>
@@ -90,10 +100,11 @@ export default function App() {
   }
 
   function onContactCreated(createdContact) {
-    if(createdContact === null) {
+    setShowingContactForm(false);
+    if (createdContact === null) {
       return;
     }
-    alert(`"${createdContact.navn}" Contact successfully created.`)
+    alert(`"${createdContact.navn}" Contact successfully created.`);
 
     getContacts();
   }

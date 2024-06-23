@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import Constants from "../utilities/Constants";
 
 export default function ContactForm(props) {
-  const [formData, setFormData] = useState(initialFormData);
+    
+    const initialFormData = Object.freeze({
+        navn: "Your Name",
+        adresse: "Your addresse",
+        email: "Email@example.com",
+        telefon: "Phone Number",
+      });
 
-  const initialFormData = Object.freeze({
-    navn: "Your Name",
-    adresse: "Your addresse",
-    email: "Email@example.com",
-    telefon: "Phone Number",
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
   function handleChange(e) {
     setFormData({
@@ -29,7 +30,7 @@ export default function ContactForm(props) {
       telefon: formData.telefon,
     };
 
-    const url = Constants.APPI_URL_CREATE_CONTACT;
+    const url = Constants.API_URL_CREATE_CONTACT;
 
     fetch(url, {
       method: "post",
@@ -52,7 +53,7 @@ export default function ContactForm(props) {
 
   return (
     <div>
-      <from className="w-100 px-5">
+      <form className="w-100 px-5">
         <h1 className="mt-5">Create new contact</h1>
 
         <div className="mt-5">
@@ -111,7 +112,7 @@ export default function ContactForm(props) {
         >
           Cancel
         </button>
-      </from>
+      </form>
     </div>
   );
 }

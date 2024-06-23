@@ -1,17 +1,17 @@
 import React, { useState } from "react";
+import Constants from "./utilities/Constants";
 
 export default function App() {
   const [contacts, setContacts] = useState([]);
 
   function getContacts() {
-    const url = "http://localhost:5299/get-all-kontaktpersoner";
+    const url = Constants.APPI_URL_GET_ALL_CONTACTS;
 
     fetch(url, {
       method: "GET",
     })
       .then((Response) => Response.json())
       .then((contactsFromServer) => {
-        console.log(contactsFromServer);
         setContacts(contactsFromServer);
       })
       .catch((error) => {

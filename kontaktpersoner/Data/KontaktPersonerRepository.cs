@@ -55,13 +55,14 @@
         }
 
         // Delete a KontaktPerson from the database and return a boolean value indicating whether the operation was successful
-        internal static async Task<bool> DeleteKontaktAsync(int KontaktId)
+        internal static async Task<bool> DeleteKontaktAsync(int kontaktId)
         {
             using var db = new AppDBContext();
             try
             {
-                KontaktPerson kontaktToDelete = await GetKontaktByIdAsync(KontaktId);
+                KontaktPerson kontaktToDelete = await GetKontaktByIdAsync(kontaktId);
 
+                db.Remove(kontaktToDelete);
                 return await db.SaveChangesAsync() >= 1;
             }
             catch (Exception)
@@ -70,9 +71,6 @@
             }
         }
 
-        internal static async Task GetKontaktPersonerByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+  
     }
 }

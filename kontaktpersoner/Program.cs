@@ -31,10 +31,10 @@ app.MapGet("/get-all-kontaktPersoner", async () => await KontaktPersonerReposito
 // map get request to get kontaktPersoner by id from the database
 app.MapGet("/get-kontaktPersoner-by-id/{kontaktId}", async (int kontaktId) =>
 {
-    KontaktPerson kToReturn = await KontaktPersonerRepository.GetKontaktByIdAsync(kontaktId);
-    if (kToReturn != null)
+    KontaktPerson k = await KontaktPersonerRepository.GetKontaktByIdAsync(kontaktId);
+    if (k != null)
     {
-        return Results.Ok(kToReturn);
+        return Results.Ok(k);
     }
     else
     {
@@ -43,15 +43,45 @@ app.MapGet("/get-kontaktPersoner-by-id/{kontaktId}", async (int kontaktId) =>
     }).WithTags("KontaktPersoner Endpoints");
 
 // map post request to add new kontaktPersoner to the database
-app.MapPost("/add-kontaktPersoner", async (KontaktPersoner kontaktPersoner) => await KontaktPersonerRepository.AddKontaktPersonerAsync(kontaktPersoner))
-    .WithTags("KontaktPersoner Endpoints");
+app.MapPost("/create-kontaktPersoner", async (KontaktPerson kontaktToCreate) =>
+{
+    bool created = await KontaktPersonerRepository.CreateKontaktAsync(kontaktToCreate);
+    if (created)
+    {
+        return Results.Ok("Create Successful!!");
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+}).WithTags("KontaktPersoner Endpoints");
 
-// map put request to update kontaktPersoner by id in the database
-app.MapPut("/update-kontaktPersoner/{id}", async (int id, KontaktPersoner kontaktPersoner) => await KontaktPersonerRepository.UpdateKontaktPersonerAsync(id, kontaktPersoner))
-    .WithTags("KontaktPersoner Endpoints");
+// map put request to update kontaktPersoner in the database
+app.MapPut("/update-kontaktPersoner", async (KontaktPerson kontaktToUpdate) =>
+{
+    bool updated = await KontaktPersonerRepository.UpdateKontaktAsync(kontaktToUpdate);
+    if (updated)
+    {
+        return Results.Ok("Update Successful!!");
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+}).WithTags("KontaktPersoner Endpoints");
 
 // map delete request to delete kontaktPersoner by id from the database
-app.MapDelete("/delete-kontaktPersoner/{id}", async (int id) => await KontaktPersonerRepository.DeleteKontaktPersonerAsync(id))
-    .WithTags("KontaktPersoner Endpoints");
+app.MapDelete("/delete-kontaktPersoner/{kontaktId}", async (int kontaktId) =>
+{
+    bool deleted = await KontaktPersonerRepository.DeleteKontaktAsync(kontaktId);
+    if (deleted)
+    {
+        return Results.Ok("Delete Successful!!");
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+}).WithTags("KontaktPersoner Endpoints");
 
 app.Run();

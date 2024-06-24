@@ -3,10 +3,10 @@ import Constants from "../utilities/Constants";
 
 export default function UpdateContact(props) {
   const initialFormData = Object.freeze({
-    navn: props.kontaktperson.navn,
-    adresse: props.kontaktperson.adresse,
-    email: props.kontaktperson.email,
-    telefon: props.kontaktperson.telefon,
+    navn: props.contact.navn,
+    adresse: props.contact.adresse,
+    email: props.contact.email,
+    telefon: props.contact.telefon,
   });
 
   const [formData, setFormData] = useState(initialFormData);
@@ -22,7 +22,7 @@ export default function UpdateContact(props) {
     e.preventDefault();
 
     const updateContact = {
-      kontaktId: props.kontaktperson.kontaktId,
+      kontaktId: props.contact.kontaktId,
       navn: formData.navn,
       adresse: formData.adresse,
       email: formData.email,
@@ -38,7 +38,7 @@ export default function UpdateContact(props) {
       },
       body: JSON.stringify(updateContact),
     })
-      .then((Response) => Response.json())
+      .then((response) => response.json())
       .then((responsFromServer) => {
         console.log(responsFromServer);
       })

@@ -97,7 +97,19 @@ export default function App() {
                   >
                     Edit
                   </button>
-                  <button className="btn btn-secondary btn-s">Delete</button>
+                  <button
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you want to delete the contact?"
+                        )
+                      )
+                        deleteContact(contact.kontaktId);
+                    }}
+                    className="btn btn-secondary btn-s"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -142,4 +154,20 @@ export default function App() {
     setContacts(contactsCopy);
     alert("Contact successfully updated.");
   }
+
+function deleteContact(contactId) {
+  const url = `${Constants.API_URL_DELETE_CONTACT_BY_ID}/${contactId}`;
+
+  fetch(url, {
+    method: "DELETE",
+  })
+    .then(() => {
+      setContacts(contacts.filter(contact => contact.kontaktId !== contactId));
+      alert("Contact successfully deleted.");
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
+    });
+}
 }

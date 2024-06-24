@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Constants from "../utilities/Constants";
 
-export default function ContactForm(props) {
+export default function CreateContact(props) {
     
     const initialFormData = Object.freeze({
         navn: "Your Name",

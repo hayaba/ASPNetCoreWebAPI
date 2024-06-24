@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Constants from "./utilities/Constants";
-import ContactForm from "./components/ContactForm";
+import CreateContact from "./components/CreateContact";
 
 export default function App() {
   const [contacts, setContacts] = useState([]);
@@ -51,7 +51,7 @@ export default function App() {
             renderContactsTable()}
 
           {showingContactForm && (
-            <ContactForm onContactCreated={onContactCreated} />
+            <CreateContact onContactCreated={onContactCreated} />
           )}
         </div>
       </div>

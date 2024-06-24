@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Constants from "./utilities/Constants";
 import CreateContact from "./components/CreateContact";
 import UpdateContact from "./components/UpdateContact";
-import ContactsTable from "./components/ContactsTable";
+import ContactCards from "./components/ContactCards";
 
 export default function App() {
   const [contacts, setContacts] = useState([]);
@@ -76,7 +76,7 @@ export default function App() {
           {contacts.length > 0 &&
             showingContactForm === false &&
             updatingContact === null && (
-              <ContactsTable
+              <ContactCards
                 contacts={contacts}
                 onEdit={handleEdit}
                 onDelete={handleDelete}

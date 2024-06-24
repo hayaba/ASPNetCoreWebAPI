@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Constants from "../utilities/Constants";
 
-export default function CreateContact(props) {
+export default function UpdateContact(props) {
   const initialFormData = Object.freeze({
-    navn: "Your Name",
-    adresse: "Your addresse",
-    email: "Email@example.com",
-    telefon: "Phone Number",
+    navn: props.kontaktperson.navn,
+    adresse: props.kontaktperson.adresse,
+    email: props.kontaktperson.email,
+    telefon: props.kontaktperson.telefon,
   });
 
   const [formData, setFormData] = useState(initialFormData);
@@ -21,22 +21,22 @@ export default function CreateContact(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const createContact = {
-      kontaktId: 0,
+    const updateContact = {
+      kontaktId: props.kontaktperson.kontaktId,
       navn: formData.navn,
       adresse: formData.adresse,
       email: formData.email,
       telefon: formData.telefon,
     };
 
-    const url = Constants.API_URL_CREATE_CONTACT;
+    const url = Constants.API_URL_UPDATE_CONTACT;
 
     fetch(url, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(createContact),
+      body: JSON.stringify(updateContact),
     })
       .then((Response) => Response.json())
       .then((responsFromServer) => {
@@ -47,12 +47,12 @@ export default function CreateContact(props) {
         alert(error);
       });
 
-    props.onContactCreated(createContact);
+    props.onContactUpdated(updateContact);
   }
 
   return (
     <form className="w-100 px-5">
-      <h1 className="mt-5">Create new contact</h1>
+      <h1 className="mt-5">Update contact</h1>
 
       <div className="mt-5">
         <label className="h3 form-label">Name</label>
@@ -102,7 +102,7 @@ export default function CreateContact(props) {
         Submit
       </button>
       <button
-        onClick={() => props.onContactCreated(null)}
+        onClick={() => props.onContactUpdated(null)}
         className="btn btn-secondary btn-lg w-100 mt-3"
       >
         Cancel

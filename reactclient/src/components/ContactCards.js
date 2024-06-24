@@ -45,7 +45,7 @@ export default function ContactsTable(props) {
         </div>
       )}
 
-      <button onClick={props.onClear} className="btn btn-dark btn-lg w-100 mt-3">
+      <button onClick={props.onClear} className="btn btn-dark btn-lg w-100 mt-3 mb-4">
         Empty React Contacts array
       </button>
     </div>

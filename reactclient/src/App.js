@@ -65,7 +65,7 @@ export default function App() {
                 </button>
                 <button
                   onClick={() => setShowingContactForm(true)}
-                  className="btn btn-secondary btn-lg w-100 mt-4"
+                  className="btn btn-secondary btn-lg w-100 mt-4 mb-4"
                 >
                   Add New Contact
                 </button>

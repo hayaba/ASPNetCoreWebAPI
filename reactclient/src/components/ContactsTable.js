@@ -2,50 +2,50 @@ import React from "react";
 
 export default function ContactsTable(props) {
   return (
-    <div className="table-responsive mt-5">
-      <table className="table table-bordered border-dark">
-        <thead>
-          <tr>
-            <th scope="col">ContactId</th>
-            <th scope="col">Name</th>
-            <th scope="col">Adresse</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">CRUD Operation</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.contacts.map((contact) => (
-            <tr key={contact.kontaktId}>
-              <th scope="row">{contact.kontaktId}</th>
-              <td>{contact.navn}</td>
-              <td>{contact.adresse}</td>
-              <td>{contact.email}</td>
-              <td>{contact.telefon}</td>
-              <td>
-                <button
-                  onClick={() => props.onEdit(contact)}
-                  className="btn btn-dark btn-s mx-3 my-3"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => {
-                    if (window.confirm("Are you sure you want to delete the contact?")) {
-                      props.onDelete(contact.kontaktId);
-                    }
-                  }}
-                  className="btn btn-secondary btn-s"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="container">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        {props.contacts.map((contact) => (
+          <div key={contact.kontaktId} className="col mb-4">
+            <div className="card">
+              <div className="card-header">
+                Contact ID: {contact.kontaktId}
+              </div>
+              <div className="card-body">
+                <h5 className="card-title">{contact.navn}</h5>
+                <p className="card-text"><strong>Address:</strong> {contact.adresse}</p>
+                <p className="card-text"><strong>Email:</strong> {contact.email}</p>
+                <p className="card-text"><strong>Phone:</strong> {contact.telefon}</p>
+                <div className="btn-group" role="group">
+                  <button
+                    onClick={() => props.onEdit(contact)}
+                    className="btn btn-dark"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => {
+                      if (window.confirm("Are you sure you want to delete the contact?")) {
+                        props.onDelete(contact.kontaktId);
+                      }
+                    }}
+                    className="btn btn-secondary"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
 
-      <button onClick={props.onClear} className="btn btn-dark btn-lg w-100">
+      {props.contacts.length === 0 && (
+        <div className="alert alert-info mt-3" role="alert">
+          No contacts available.
+        </div>
+      )}
+
+      <button onClick={props.onClear} className="btn btn-dark btn-lg w-100 mt-3">
         Empty React Contacts array
       </button>
     </div>
